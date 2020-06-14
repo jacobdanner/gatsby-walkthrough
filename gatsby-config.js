@@ -9,6 +9,13 @@ module.exports = {
     title: "Pandas Eating"
   },
   plugins: [
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `src`,
+        path: `${__dirname}/src/`,
+      },
+    },
     
     `gatsby-plugin-emotion`,
     {
