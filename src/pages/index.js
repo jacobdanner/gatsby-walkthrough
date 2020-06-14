@@ -6,7 +6,7 @@ import Header from "../components/header"
 import "../styles/global.css" // ES Modules
 import Layout from "../components/layout"
 
-export default function Home({data}) {
+export default function Home({ data }) {
   console.log(data);
   // In pure JS - return React.createElement("div", null, "Hello world!")
   return <Layout>
@@ -21,39 +21,46 @@ export default function Home({data}) {
       </p>
     </div>
     <h1>Amazing Pandas Eating Things</h1>
-      <div>
-        <img
-          src="https://2.bp.blogspot.com/-BMP2l6Hwvp4/TiAxeGx4CTI/AAAAAAAAD_M/XlC_mY3SoEw/s1600/panda-group-eating-bamboo.jpg"
-          alt="Group of pandas eating bamboo"
-        />
-      </div>
-      <div>
-        <h1 css={css`
+    <div>
+      <img
+        src="https://2.bp.blogspot.com/-BMP2l6Hwvp4/TiAxeGx4CTI/AAAAAAAAD_M/XlC_mY3SoEw/s1600/panda-group-eating-bamboo.jpg"
+        alt="Group of pandas eating bamboo"
+      />
+    </div>
+    <div>
+      <h1 css={css`
           display: inline-block;
           border-bottom: 1px solid;
         `}>Amazing Pandas Eating Things</h1>
-        <h4>{data.allMarkdownRemark.totalCount} Posts</h4>
-        {data.allMarkdownRemark.edges.map(( {node}, index) =>(
-       <div key={node.id}>
-       <h3
-         css={css`
+      <h4>{data.allMarkdownRemark.totalCount} Posts</h4>
+      {data.allMarkdownRemark.edges.map(({ node }, index) => (
+        <div key={node.id}>
+          <Link to={node.fields.slug}
+            css={css`
+          text-decoration: none;
+          color: inherit;
+        `}>
+            <h3
+              css={css`
            margin-bottom: ${rhythm(1 / 4)};
          `}
-       >
-         {node.frontmatter.title}{" "}
-         <span
-           css={css`
+            >
+              {node.frontmatter.title}{" "}
+              <span
+                css={css`
              color: #bbb;
            `}
-         >
-           — {node.frontmatter.date}
-         </span>
-       </h3>
-       <p>{node.excerpt}</p>
-     </div>
-   ))}
- </div>
-    </Layout>
+              >
+
+                — {node.frontmatter.date}
+              </span>
+            </h3>
+          </Link>
+          <p>{node.excerpt}</p>
+        </div>
+      ))}
+    </div>
+  </Layout>
 }
 
 export const query = graphql`
@@ -66,6 +73,9 @@ export const query = graphql`
         frontmatter{
           title
           date(formatString: "DD MMMM, YYYY")
+        }
+        fields{
+          slug
         }
         excerpt
         timeToRead
