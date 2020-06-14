@@ -5,15 +5,11 @@
  */
 
 module.exports = {
-  /* Your site config here */
+  siteMetadata:{
+    title: "Pandas Eating"
+  },
   plugins: [
-    /*{
-      resolve: `gatsby-plugin-typography`,
-      options: {
-        pathToConfigModule: `src/utils/typography`
-      }
-    }*/
-
+    
     `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-plugin-typography`,
@@ -25,3 +21,11 @@ module.exports = {
 
   ],
 }
+
+/*{
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/utils/typography`
+      }
+    }*/
+
